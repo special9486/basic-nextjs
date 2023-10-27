@@ -16,13 +16,12 @@ const DefaultLayout = ({children}) => {
 
 
 export default HOF(({children, name}) => {
-    name = _.defaultTo(name, 'default');
-    Log.info(`Layout name is ${name}`);
+    const layerName = _.defaultTo(name, 'default');
 
-    const LayoutComponent = name === 'default' ? DefaultLayout : null;
+    const LayoutComponent = layerName === 'default' ? DefaultLayout : null;
     
     if (LayoutComponent === null) {
-        throw new Error(`"${name}" is not supported layout name.`);
+        throw new Error(`"${layerName}" is not supported layout name.`);
     }
 
     return (

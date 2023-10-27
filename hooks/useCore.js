@@ -9,7 +9,7 @@ const coreData = {
 }
 
 // page parameter save data
-const movePageParams = {};
+export const movePageParams = {};
 
 export default HOF(options => {
     const router = useRouter();

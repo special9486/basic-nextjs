@@ -11,28 +11,28 @@ export default HOF(() => {
     const twoPageUri = '/samples/com/movePage/MovePageTwo';
 
     /** 스크립트 로직에서 페이지 이동 처리 **/
-    const go = () => {
+    const go = HOF(() => {
         core.goPage(twoPageUri);
-    }
+    }, 'go');
 
     /** 이동할 페이지로 데이터 전달 **/
-    const goWithData = () => {
+    const goWithData = HOF(() => {
         const data = {
             aa: '11',
             bb: '22'
         };
 
         core.goPage(twoPageUri, data);
-    }
+    }, 'goWithData');
 
     /** 이동할 페이지 URL에 Query 파라미터 사용 **/
-    const goWithQuery = () => {
+    const goWithQuery = HOF(() => {
         const uriWithQuery = twoPageUri + '?cc=33&dd=44';
         core.goPage(uriWithQuery);
-    }
+    }, 'goWithQuery');
 
     /** 이동할 페이지에 데이터와 Query 파라미터 모두 사용 **/
-    const goWithAll = () => {
+    const goWithAll = HOF(() => {
         const data = {
             aa: '11',
             bb: '22'
@@ -41,7 +41,7 @@ export default HOF(() => {
         const uriWithQuery = twoPageUri + '?cc=33&dd=44';
 
         core.goPage(uriWithQuery, data);
-    }
+    }, 'goWithAll');
 
     return (
         <Layout>

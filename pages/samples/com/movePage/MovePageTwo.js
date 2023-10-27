@@ -1,7 +1,6 @@
 import ComponentInitializer from "@/utils/ComponentInitializer";
 import useCore from "@/hooks/useCore";
 import Layout from "@/components/com/Layout";
-import Link from "next/link";
 
 const { HOF } = ComponentInitializer.init('MovePageTwo');
 
@@ -21,7 +20,8 @@ export default HOF(() => {
             <p>전달된 데이터: {JSON.stringify(pageParams)}</p>
             <p>URL 파라미터 : {JSON.stringify(queryParams)}</p>
             
-            <Link href={'/samples/SampleMain'}>go to sample main</Link>
+            <br/>
+            <button onClick={() => core.goBack()}>뒤로가기</button>
         </Layout>
     )
 });

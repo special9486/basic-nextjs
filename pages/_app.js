@@ -54,7 +54,7 @@ const App = HOF(({ Component, pageProps }) => {
             <Component {...pageProps} />
             <br/><hr /><br/>
             {layerList.map((item, index) => (
-                <div key={index}>[{JSON.stringify(item)}]</div>
+                <div key={index}>[layer {index + 1} 데이터: {JSON.stringify(item)}]</div>
             ))}
         </div>
     );

@@ -63,7 +63,6 @@ const App = HOF(({ Component, pageProps }) => {
 App.getInitialProps = HOF(async context => {
     if (typeof window === 'undefined') {
         Log.info('여기에 페이지 초기화에 필요한 로직 처리 등록');
-        // 리다이렉트 설정
         return {
             props: {
                 initialData: 'abc'

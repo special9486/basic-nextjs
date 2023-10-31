@@ -10,7 +10,15 @@ export default HOF((func) => {
     const core = useCore();
 
     useEffect(HOF(() => {
-        core.setGoBackFunction(func);
+        if (typeof func === 'function') {
+            core.setGoBackFunction(func);
+
+        } else {
+            core.setGoBackFunction(() => {
+                core.goMain();
+            });
+
+        }
         
         return () => {
             core.setGoBackFunction(null);

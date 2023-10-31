@@ -21,7 +21,7 @@ export default HOF(options => {
 
     /** 메인 화면으로 이동 **/
     const goMain = HOF(() => {
-        router.push('/func/FuncFirst')
+        router.push('/samples/SampleMain')
     }, 'goMain');
 
     /** 페이지 이동 **/

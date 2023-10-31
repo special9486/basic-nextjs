@@ -13,6 +13,9 @@ export default HOF(() => {
             
             <br/><br/>
             <CustomLink href={'/samples/com/dataBind/DataBindMain'}>Input text, selectbox, radio, textarea에 대한 양방향 데이터 바인드<br/>(/samples/com/dataBind/DataBindMain)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/backBtn/BackBtnControll'}>브라우저 뒤로가기 버튼 제어<br/>(/samples/com/backBtn/BackBtnControll)</CustomLink>
         </Layout>
     )
 });

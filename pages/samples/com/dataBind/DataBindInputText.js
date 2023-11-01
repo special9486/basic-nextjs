@@ -13,18 +13,22 @@ const inputTextStyle = {
 export default HOF(() => {
     // 기본적인 양방향 바인드용 데이터
     const [ basicValue, setBasicValue ] = useState('기본적인 양방향 바인드 셈플');
-    const changeBasicValue = event => {
+    const changeBasicValue = HOF(event => {
         setBasicValue(event.target.value);
-    };
+
+    }, 'changeBasicValue');
 
     // hook을 이용한 양방향 바인드용 데이터
     const hookData = useTextValueBind('hook을 이용한 양방향 바인드 셈플');
-    const initHookData = () => {    // hookData 초기 값으로 셋팅
+    const initHookData = HOF(() => {    // hookData 초기 값으로 셋팅
         hookData.event.reset();
-    };
-    const changeHookData = () => {  // 원하는 값으로 hookData 변경
+
+    }, 'initHookData');
+
+    const changeHookData = HOF(() => {  // 원하는 값으로 hookData 변경
         hookData.event.setValue('스크립트로 변경한 hookData');
-    };
+        
+    }, 'changeHookData');
 
     return (
         <Layout>

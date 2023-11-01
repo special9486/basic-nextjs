@@ -12,10 +12,13 @@ export default HOF(() => {
             <CustomLink href={'/samples/com/movePage/MovePageOne'}>페이지 이동 및 데이터(파라미터) 전달 셈플<br/>(/samples/com/movePage/MovePageOne)</CustomLink>
             
             <br/><br/>
-            <CustomLink href={'/samples/com/dataBind/DataBindMain'}>Input text, selectbox, radio, textarea에 대한 양방향 데이터 바인드<br/>(/samples/com/dataBind/DataBindMain)</CustomLink>
+            <CustomLink href={'/samples/com/dataBind/DataBindMain'}>Input text, checktbox, select, radio, textarea에 대한 양방향 데이터 바인드<br/>(/samples/com/dataBind/DataBindMain)</CustomLink>
 
             <br/><br/>
             <CustomLink href={'/samples/com/backBtn/BackBtnControll'}>브라우저 뒤로가기 버튼 제어<br/>(/samples/com/backBtn/BackBtnControll)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/context/ContextParent'}>Context 셈플(하위 컴포넌트와 데이터 공유)<br/>(/samples/com/context/ContextParent)</CustomLink>
         </Layout>
     )
 });

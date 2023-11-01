@@ -1,9 +1,14 @@
 import CustomLink from "@/components/com/CustomLink";
 import Layout from "@/components/com/Layout";
 import ComponentInitializer from "@/utils/ComponentInitializer";
+import { useState } from "react";
 import { useTextValueBind } from "@/hooks/useInputTextBind";
 
-const { HOF } = ComponentInitializer.init('DataBindTextarea');
+const { HOF } = ComponentInitializer.init('DataBindSelect');
+
+const inputTextStyle = {
+    width: '100%'
+};
 
 export default HOF(() => {
     const textData = useTextValueBind('초기데이터');

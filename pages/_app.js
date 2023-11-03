@@ -62,7 +62,7 @@ const App = HOF(({ Component, pageProps }) => {
             <br /><hr /><br />
             
             {layerList.map((item, index) => (
-                <ModalWrapper layerIndex={index}>
+                <ModalWrapper key={index} layerIndex={index}>
                     <item.layerComponent layerIndex={index} callbackFunc={item.callbackFunc} {...item.layerProps} />
                 </ModalWrapper>
             ))}

@@ -1,4 +1,6 @@
 import ComponentInitializer from "@/utils/ComponentInitializer";
+import StoreCore from "@/store/StoreCore";
+import useCore from "@/hooks/useCore";
 
 const { HOF } = ComponentInitializer.init('ModalWrapper');
 
@@ -22,10 +24,15 @@ const modalWrapperStyle = {
     alignItems: 'center'
 };
 
-export default HOF(({ children }) => {
+export default HOF(({ children, layerIndex }) => {
+    useCore({ storeList: [StoreCore] });
+
+    const { layerList } = StoreCore.getState();
+    const lastIndex = layerList.length - 1;
+
     return (
         <div style={modalOverlayStyle}>
-            <div style={modalWrapperStyle} aria-modal="true" aria-hidden="false" tabIndex={-1} role="dialog">
+            <div style={modalWrapperStyle} aria-hidden={layerIndex === lastIndex ? 'false' : 'true'} tabIndex={-1} role="dialog">
                 {children}
             </div>
         </div>

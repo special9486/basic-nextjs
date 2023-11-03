@@ -55,19 +55,17 @@ const App = HOF(({ Component, pageProps }) => {
 
     return (
         <div>
-            <div>
+            <div aria-hidden={layerList.length === 0 ? 'false' : 'true'}>
                 <Component {...pageProps} />
             </div>
             
             <br /><hr /><br />
             
-            {layerList.length > 0 && (
-                <ModalWrapper>
-                    {layerList.map((item, index) => (
-                        <item.layerComponent layerIndex={index} callbackFunc={item.callbackFunc} {...item.layerProps} />
-                    ))}        
+            {layerList.map((item, index) => (
+                <ModalWrapper layerIndex={index}>
+                    <item.layerComponent layerIndex={index} callbackFunc={item.callbackFunc} {...item.layerProps} />
                 </ModalWrapper>
-            )}
+            ))}
         </div>
     );
 });

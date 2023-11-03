@@ -22,7 +22,7 @@ export default HOF(() => {
             <p>HOF 함수: High Order Function의 약자로 오류 발생시 오류 위치를 추적하기 위해 함수 정의 시 해당 함수로 감싼다.</p>
 
             <br/><br/><br/>
-            <CustomLink href="/samples/SampleMain"></CustomLink>
+            <CustomLink href="/samples/SampleMain">샘플 메인 화면으로....</CustomLink>
         </Layout>
     );
 });

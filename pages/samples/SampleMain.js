@@ -19,6 +19,15 @@ export default HOF(() => {
 
             <br/><br/>
             <CustomLink href={'/samples/com/context/ContextParent'}>Context 셈플(하위 컴포넌트와 데이터 공유)<br/>(/samples/com/context/ContextParent)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/store/GlobalData'}>Store 셈플(전역 데이터 공유)<br/>(/samples/com/store/GlobalData)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/rendering/CsrSsr'}>CSR(Client Side Rendering) 및 SSR(Server Side Rendering) 셈플<br/>(/samples/com/rendering/CsrSsr)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/modal/SampleModalMain'}>Modal 레이어(alert, confirm, popup) 셈플<br/>(/samples/com/modal/SampleModalMain)</CustomLink>
         </Layout>
     )
 });

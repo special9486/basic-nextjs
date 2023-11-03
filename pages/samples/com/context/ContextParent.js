@@ -6,15 +6,18 @@ import ContextChild from "./ContextChild";
 
 const { HOF } = ComponentInitializer.init('ContextParent');
 
+// Context에 사용할 초기 데이터. 미리 데이터구조를 잡아놔야 SSR 렌더링시 정상 동작한다.
+const initContextData = {
+    name: 'SeongHeon',
+    age: '20'
+};
+
 // 하위 컴포넌트에 공유할 context 생성
-export const SampleContext = React.createContext();
+export const SampleContext = React.createContext([initContextData, () => {}, {}]);
 
 export default HOF(() => {
     // 데이터 변경시 자동으로 화면 렌더링이 되게하기 위해 state 로 정의한다.
-    const [ data, setData ] = useState({
-        name: 'SeongHeon',
-        age: '20'
-    });
+    const [ data, setData ] = useState(initContextData);
 
     // 하위 컴포넌트와 공통으로 사용할 함수를 정의 (필요없으면 생각해도 됨)
     const contextFunc = {

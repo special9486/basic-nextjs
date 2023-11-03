@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getNestedValue, setNestedValue } from '@/utils/ObjectUtils';
 import ComponentInitializer from "@/utils/ComponentInitializer";
 
-const { HOF } = ComponentInitializer.init('useInputTextBind');
+const { HOF } = ComponentInitializer.init('useDataBind');
 
 /**
  * Input Text 타입의 값으로 양방향 바이딩 처리하는 훅
@@ -88,13 +88,13 @@ export const useRadioBind = HOF((initData) => {
 
     const [radioData, setRadioData] = useState({
         selectedValue: initData.initValue ? initData.initValue : '',
-        options: []
+        values: []
     });
 
     const handleChange = item => {
         radioData.selectedValue = item.value;
 
-        radioData.options.forEach(option => {
+        radioData.values.forEach(option => {
             option.attr.checked = option.attr.value === item.value;
         });
 
@@ -104,7 +104,7 @@ export const useRadioBind = HOF((initData) => {
     const setSelectedValue = val => {
         radioData.selectedValue = val;
 
-        radioData.options.forEach(option => {
+        radioData.values.forEach(option => {
             option.attr.checked = option.attr.value === val;
         });
 
@@ -113,9 +113,9 @@ export const useRadioBind = HOF((initData) => {
 
     // state 셋팅
     useEffect(() => {
-        // options 초기 셋팅
+        // values 초기 셋팅
         initData.values.forEach(item => {
-            radioData.options.push({
+            radioData.values.push({
                 attr: {
                     value: item.value,
                     checked: item.value === radioData.selectedValue,
@@ -146,7 +146,7 @@ export const useCheckboxBind = HOF((initData) => {
     const [ checkboxData, setCheckboxData ] = useState({
         refData: {
             checkedList: initData.initCheckedList ? initData.initCheckedList : [],
-            options: []
+            values: []
         }
     });
 
@@ -156,7 +156,7 @@ export const useCheckboxBind = HOF((initData) => {
 
     const checkAll = isChecked => {
         const tempCheckedList = [];
-        checkboxData.refData.options.forEach(option => {
+        checkboxData.refData.values.forEach(option => {
             tempCheckedList.push(option.value);
             option.attr.checked = isChecked;
         });
@@ -172,7 +172,7 @@ export const useCheckboxBind = HOF((initData) => {
 
     // state 셋팅
     useEffect(() => {
-        // options 초기 셋팅
+        // values 초기 셋팅
         initData.values.forEach(item => {
             const option = {
                 attr: {
@@ -197,7 +197,7 @@ export const useCheckboxBind = HOF((initData) => {
                 setCheckboxData({ ...checkboxData });
             };
 
-            checkboxData.refData.options.push(option);
+            checkboxData.refData.values.push(option);
         });
 
         setCheckboxData({ ...checkboxData });
@@ -209,3 +209,32 @@ export const useCheckboxBind = HOF((initData) => {
     };
 
 }, 'useCheckboxBind');
+
+/**
+ * select 양방향 바인딩 처리하는 훅
+ * 
+ * @param {String} initialValue [선택] 초기 셋팅 값. 기본 빈값('')
+ */
+export const useSelectBind = HOF((initialValue) => {
+    const [value, setValue] = useState(initialValue ? initialValue : '');
+
+    const onChange = (e) => {
+        setValue(e.target.value);
+    };
+
+    const reset = () => {
+        setValue(initialValue);
+    };
+
+    return {
+        attr: {
+            value,
+            onChange
+        },
+        event: {
+            setValue,
+            reset
+        }
+    };
+
+}, 'useSelectBind');

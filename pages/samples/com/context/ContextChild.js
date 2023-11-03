@@ -1,7 +1,7 @@
 import ComponentInitializer from "@/utils/ComponentInitializer"
 import { useContext } from 'react';
 import { SampleContext } from "./ContextParent";
-import { useTextContextBind } from "@/hooks/useInputTextBind";
+import { useTextContextBind } from "@/hooks/useDataBind";
 
 const { HOF } = ComponentInitializer.init('ContextChild');
 
@@ -11,7 +11,6 @@ export default HOF(() => {
 
     // input text 의 경우 hook을 이용해 context 데이터를 바인딩 할 수 있다.
     const contextBindData = useTextContextBind(context, 'age');
-
     
     return (
         <div style={{border: '1px solid black'}}>

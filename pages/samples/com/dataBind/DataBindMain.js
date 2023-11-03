@@ -16,6 +16,8 @@ export default HOF(() => {
             <CustomLink href="/samples/com/dataBind/DataBindInputCheckbox">input checkbox 양방향 데이터 바인딩 셈플 화면으로...</CustomLink>
             <br /><br />
             <CustomLink href="/samples/com/dataBind/DataBindTextarea">textarea 양방향 데이터 바인딩 셈플 화면으로...</CustomLink>
+            <br /><br />
+            <CustomLink href="/samples/com/dataBind/DataBindSelect">select 양방향 데이터 바인딩 셈플 화면으로...</CustomLink>
 
             <br/><br/><br/>
             <CustomLink href="/samples/SampleMain">Sample Main 화면으로...</CustomLink>

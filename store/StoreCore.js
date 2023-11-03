@@ -2,9 +2,17 @@ import { create } from 'zustand';
 
 export default create((set) => ({
     layerList: [],
+    testData: 0,
+    
+    addLayerList: (layerComponent, callbackFunc, layerProps) => set(state => {
+        state.layerList.push({
+            layerComponent, callbackFunc, layerProps
+        });
+        return {...state};
+    }),
 
-    addLayer: info => set(state => {
-        state.layerList.push(info);
+    removeLayer: removeIndex => set(state => {
+        state.layerList.splice(removeIndex, 1);
         return {...state};
     }),
 

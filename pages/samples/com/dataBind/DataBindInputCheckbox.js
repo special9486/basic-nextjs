@@ -1,7 +1,7 @@
 import CustomLink from "@/components/com/CustomLink";
 import Layout from "@/components/com/Layout";
 import ComponentInitializer from "@/utils/ComponentInitializer";
-import { useCheckboxBind } from "@/hooks/useInputTextBind";
+import { useCheckboxBind } from "@/hooks/useDataBind";
 import { useState } from "react";
 
 const { HOF } = ComponentInitializer.init('DataBindInputRadio');
@@ -54,7 +54,7 @@ export default HOF(() => {
 
             <div style={divStyle}>
                 <h2>hook 을 이용한 양방향 바인드</h2>
-                {checkboxData.options.map((item, idx) => (
+                {checkboxData.values.map((item, idx) => (
                     <label key={idx}>
                         <input type="checkbox" {...item.attr} />
                         {item.text}

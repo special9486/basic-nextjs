@@ -1,6 +1,11 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import ComponentInitializer from "@/utils/ComponentInitializer";
+import StoreCore from "@/store/StoreCore";
+
+import ModalAlert from '@/components/com/ModalAlert';
+import ModalConfirm from '@/components/com/ModalConfirm';
+
 
 const { Log, HOF } = ComponentInitializer.init('useCore');
 
@@ -64,6 +69,32 @@ export default HOF(options => {
         return coreData.goBackFunction;
     }, 'getGoBackFunction');
 
+    /** Alert 메시지창을 띄운다. */
+    const alert = HOF((message) => {
+        return new Promise(resolve => {
+            const callbackFunc = () => {
+                resolve();
+            };
+
+            const { addLayerList } = StoreCore.getState();
+
+            addLayerList(ModalAlert, callbackFunc, { message });
+        });
+    }, 'alert');
+
+    /** Confirm 메시지창을 띄운다. */
+    const confirm = HOF((message) => {
+        return new Promise(resolve => {
+            const callbackFunc = (result) => {
+                resolve(result);
+            };
+
+            const { addLayerList } = StoreCore.getState();
+
+            addLayerList(ModalConfirm, callbackFunc, { message });
+        });
+    }, 'confirm');
+
     /** 스토어 목록에 대한 subscribe 설정 **/
     useEffect(() => {
         if (options?.storeList && options.storeList.length) {
@@ -93,6 +124,8 @@ export default HOF(options => {
         getPageParams,
         getQueryParams,
         setGoBackFunction,
-        getGoBackFunction
+        getGoBackFunction,
+        alert,
+        confirm
     }
 })

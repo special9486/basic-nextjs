@@ -2,7 +2,7 @@ import CustomLink from "@/components/com/CustomLink";
 import Layout from "@/components/com/Layout";
 import ComponentInitializer from "@/utils/ComponentInitializer";
 import { useState } from "react";
-import { useTextValueBind } from "@/hooks/useInputTextBind";
+import { useTextValueBind } from "@/hooks/useDataBind";
 
 const { HOF } = ComponentInitializer.init('DataBindInputText');
 

@@ -91,15 +91,7 @@ export const useRadioBind = HOF((initData) => {
         values: []
     });
 
-    const handleChange = item => {
-        radioData.selectedValue = item.value;
-
-        radioData.values.forEach(option => {
-            option.attr.checked = option.attr.value === item.value;
-        });
-
-        setRadioData({...radioData});
-    };
+    
 
     const setSelectedValue = val => {
         radioData.selectedValue = val;
@@ -113,6 +105,16 @@ export const useRadioBind = HOF((initData) => {
 
     // state 셋팅
     useEffect(() => {
+        const handleChange = item => {
+            radioData.selectedValue = item.value;
+    
+            radioData.values.forEach(option => {
+                option.attr.checked = option.attr.value === item.value;
+            });
+    
+            setRadioData({...radioData});
+        };
+
         // values 초기 셋팅
         initData.values.forEach(item => {
             radioData.values.push({
@@ -126,7 +128,7 @@ export const useRadioBind = HOF((initData) => {
         });
 
         setRadioData({ ...radioData });
-    }, []);
+    }, [initData, setRadioData, radioData]);
 
     return { radioData, setSelectedValue };
 }, 'useRadioBind');
@@ -150,10 +152,6 @@ export const useCheckboxBind = HOF((initData) => {
         }
     });
 
-    const isChecked = (item) => {
-        return checkboxData.refData.checkedList.indexOf(item.value) > -1;
-    }
-
     const checkAll = isChecked => {
         const tempCheckedList = [];
         checkboxData.refData.values.forEach(option => {
@@ -176,7 +174,7 @@ export const useCheckboxBind = HOF((initData) => {
         initData.values.forEach(item => {
             const option = {
                 attr: {
-                    checked: isChecked(item)
+                    checked: checkboxData.refData.checkedList.indexOf(item.value) > -1
                 },
                 value: item.value,
                 text: item.text ? item.text : item.value
@@ -201,7 +199,7 @@ export const useCheckboxBind = HOF((initData) => {
         });
 
         setCheckboxData({ ...checkboxData });
-    }, []);
+    }, [checkboxData, initData.values]);
 
     return { 
         checkboxData: checkboxData.refData, 

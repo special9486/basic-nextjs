@@ -17,24 +17,14 @@ const modalOverlayStyle = {
     alignItems: 'center'
 };
 
-const modalWrapperStyle = {
-    zIndex: '1050',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-};
 
-export default HOF(({ children, layerIndex }) => {
+
+export default HOF(({ children }) => {
     useCore({ storeList: [StoreCore] });
-
-    const { layerList } = StoreCore.getState();
-    const lastIndex = layerList.length - 1;
 
     return (
         <div style={modalOverlayStyle}>
-            <div style={modalWrapperStyle} aria-hidden={layerIndex === lastIndex ? 'false' : 'true'} tabIndex={-1} role="dialog">
-                {children}
-            </div>
+            {children}
         </div>
     )
 });

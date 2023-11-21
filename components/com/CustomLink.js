@@ -12,6 +12,7 @@ export default HOF(({children, href, className}) => {
     }, 'clickEvent');
 
     return (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a href={'#'} className={className} onClick={clickEvent}>{children}</a>
     )
 });

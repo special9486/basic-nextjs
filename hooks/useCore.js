@@ -5,6 +5,7 @@ import StoreCore from "@/store/StoreCore";
 
 import ModalAlert from '@/components/com/ModalAlert';
 import ModalConfirm from '@/components/com/ModalConfirm';
+import ModalBottom from '@/components/com/ModalBottom';
 
 
 const { Log, HOF } = ComponentInitializer.init('useCore');
@@ -95,6 +96,27 @@ export default HOF(options => {
         });
     }, 'confirm');
 
+    /** Bottom 팝업을 띄운다. **/
+    const showBottomPopup = HOF((ContentsComponent, data) => {
+        return new Promise(resolve => {
+            const callbackFunc = (result) => {
+                resolve(result);
+            };
+
+            const PopupComponent = (pageProps) => {
+                return (
+                    <ModalBottom {...pageProps}>
+                        <ContentsComponent {...pageProps} />
+                    </ModalBottom>
+                );
+            }
+
+            const { addLayerList } = StoreCore.getState();
+
+            addLayerList(PopupComponent, callbackFunc, data);
+        });
+    });
+
     /** 스토어 목록에 대한 subscribe 설정 **/
     useEffect(() => {
         if (options?.storeList && options.storeList.length) {
@@ -114,7 +136,7 @@ export default HOF(options => {
             }    
         }
         
-    }, []);
+    }, [forceUpdate, options]);
 
     return {
         forceUpdate,
@@ -126,6 +148,7 @@ export default HOF(options => {
         setGoBackFunction,
         getGoBackFunction,
         alert,
-        confirm
+        confirm,
+        showBottomPopup
     }
 })

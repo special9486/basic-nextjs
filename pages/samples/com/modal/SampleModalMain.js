@@ -15,6 +15,9 @@ export default HOF(() => {
             <br/><br/>
             <CustomLink href="/samples/com/modal/SampleModalConfirm">Confirm 메시지 셈플</CustomLink>
 
+            <br/><br/>
+            <CustomLink href="/samples/com/modal/SampleModalBottom">Bottom 팝업 셈플</CustomLink>
+
             <br/><br/><br/>
             <CustomLink href="/samples/SampleMain">Sample Main 화면으로...</CustomLink>
         </Layout>

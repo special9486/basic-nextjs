@@ -1,26 +1,12 @@
 import ComponentInitializer from "@/utils/ComponentInitializer";
 import StoreCore from "@/store/StoreCore";
 import useCore from "@/hooks/useCore";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import styles from "@/public/resources/css/samples/bottomSlideModal.module.css";
 
 const { HOF } = ComponentInitializer.init('ModalConfirm');
 
-const modalWrapperStyle = {
-    zIndex: '1050',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-};
-
-const alertStyle = {
-    width: '500px',
-    background: 'white',
-    padding: '20px',
-    zIndex: '100',
-    borderRadius: '8px'
-}
-
-export default HOF(({layerIndex, callbackFunc, message}) => {
+export default HOF(({ layerIndex, callbackFunc, message, children }) => {
     useCore({ storeList: [StoreCore] });
     const { layerList, removeLayer } = StoreCore.getState();
     const lastIndex = layerList.length - 1;
@@ -28,7 +14,7 @@ export default HOF(({layerIndex, callbackFunc, message}) => {
     // 팝업 닫힘 여부 플래그
     let isNotClosed = true;
 
-    const btnClick = HOF((result) => {
+    const closePopup = HOF((result) => {
         isNotClosed = false;
 
         removeLayer(layerIndex);
@@ -42,17 +28,18 @@ export default HOF(({layerIndex, callbackFunc, message}) => {
             if (isNotClosed) {
                 callbackFunc();
             }
-        }   
+        }
     }, [isNotClosed, callbackFunc]);
 
+
     return (
-        <div style={modalWrapperStyle} aria-hidden={layerIndex === lastIndex ? 'false' : 'true'} role="dialog">
-            <div style={alertStyle}>
-                <p>{message}</p>
-                <div>
-                    <button onClick={() => btnClick(false)}>취소</button> &nbsp;&nbsp; 
-                    <button onClick={() => btnClick(true)}>확인</button>
-                </div>
+        <div className={styles.modalOverlay} aria-hidden={layerIndex === lastIndex ? 'false' : 'true'}>
+            <div className={styles.modalContent}>
+                {React.Children.map(children, child => {
+                    return React.cloneElement(child, {closePopup})
+                })}
+                <br/><br/><hr/><br/>
+                <button onClick={() => closePopup()} >닫기</button>
             </div>
         </div>
     )

@@ -17,7 +17,7 @@ export default HOF(() => {
     return (
         <Layout>
             <h1>컴포넌트 초기화 및 로그 셈플</h1>
-            <p>초기화: const {`{`} Log, HOF {`}`} = ComponentInitializer.init('요기는 컴포넌트 식별자명을 입력');</p>
+            <p>초기화: const {`{`} Log, HOF {`}`} = ComponentInitializer.init(&apos;요기는 컴포넌트 식별자명을 입력&lsquo;);</p>
             <p>Log 객체: 컴포넌트에서 콘솔 로그를 출력하고자 할 때 사용하는 객체(debug, info, error 함수 제공)</p>
             <p>HOF 함수: High Order Function의 약자로 오류 발생시 오류 위치를 추적하기 위해 함수 정의 시 해당 함수로 감싼다.</p>
 

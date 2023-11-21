@@ -7,7 +7,7 @@ const { Log, HOF } = ComponentInitializer.init('Layout');
 const DefaultLayout = ({children}) => {
     return (
         <div>
-            <div><h1>Header</h1></div>
+            <div><h1>Custom Header</h1></div>
             <div>{children}</div>
             <div><h2>Bottom</h2></div>
         </div>

@@ -7,6 +7,8 @@ import _ from 'lodash';
 
 import ModalWrapper from "@/components/com/ModalWrapper";
 
+import '@/public/resources/css/samples/sampleMain.css';
+
 const { HOF } = ComponentInitializer.init('_app.js');
 
 const App = HOF(({ Component, pageProps }) => {
@@ -55,9 +57,11 @@ const App = HOF(({ Component, pageProps }) => {
 
     return (
         <div>
+            
             <div aria-hidden={layerList.length === 0 ? 'false' : 'true'}>
                 <Component {...pageProps} />
             </div>
+            
             
             <br /><hr /><br />
             

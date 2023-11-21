@@ -33,6 +33,9 @@ export default HOF(() => {
             <CustomLink href={'/samples/com/modal/SampleModalMain'}>Modal 레이어(alert, confirm, popup) 셈플<br/>(/samples/com/modal/SampleModalMain)</CustomLink>
 
             <br/><br/>
+            <CustomLink href={'/samples/com/focus/SampleFocus'}>Focus 처리 셈플<br/>(/samples/com/focus/SampleFocus)</CustomLink>
+
+            <br/><br/>
             <CustomLink href={'/samples/com/slide/SampleSlide'}>슬라이드 셈플<br/>(/samples/com/slide/SampleSlide)</CustomLink>
         </Layout>
     )

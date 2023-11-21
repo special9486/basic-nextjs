@@ -71,7 +71,7 @@ export const Slider = HOF(({ slideLength, children, options }) => {
             return () => clearInterval(timer);
         }
         
-    }, [slideLength]);
+    }, [options, slideLength]);
 
 
     return (

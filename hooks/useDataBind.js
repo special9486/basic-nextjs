@@ -128,7 +128,7 @@ export const useRadioBind = HOF((initData) => {
         });
 
         setRadioData({ ...radioData });
-    }, [initData, setRadioData, radioData]);
+    }, []);
 
     return { radioData, setSelectedValue };
 }, 'useRadioBind');
@@ -199,7 +199,7 @@ export const useCheckboxBind = HOF((initData) => {
         });
 
         setCheckboxData({ ...checkboxData });
-    }, [checkboxData, initData.values]);
+    }, []);
 
     return { 
         checkboxData: checkboxData.refData, 

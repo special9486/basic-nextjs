@@ -1,7 +1,7 @@
 import ComponentInitializer from "@/utils/ComponentInitializer";
 import StoreCore from "@/store/StoreCore";
 import useCore from "@/hooks/useCore";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import _ from 'lodash';
 
@@ -11,10 +11,21 @@ import '@/public/resources/css/samples/sampleMain.css';
 
 const { HOF } = ComponentInitializer.init('_app.js');
 
+// Layer(페이지, 팝업 등..)별 사용되는 컨텍스트 데이터
+export const initLayerContextData = {
+    ariaHidden: 'false'
+};
+
+// 하위 컴포넌트에 공유할 context 생성
+export const LayerContext = React.createContext([{...initLayerContextData}, () => {}]);
+
 const App = HOF(({ Component, pageProps }) => {
     if (pageProps.initData) {
         // TODO initData 에 값이 들어 있을 경우 초기 데이터를 셋팅한다.
     }
+
+    // 페이지 레이어 컨텍스트 데이터 상태 데이터 정의
+    const [ pageLayerContextData, setPageLayerContextData ] = useState({...initLayerContextData});
 
     const { layerList, closeLastLayer } = StoreCore.getState();
     const router = useRouter();
@@ -24,6 +35,10 @@ const App = HOF(({ Component, pageProps }) => {
 
     // 뒤로가기 제어
     useEffect(() => {
+        // layerList를 체크하여 페이지 레이어 컨텍스트의 ariaHidden 값을 변경 한다.
+        pageLayerContextData.ariaHidden = layerList.length === 0 ? 'false' : 'true';
+        setPageLayerContextData({...pageLayerContextData});
+
         const nowUrl = router.pathname;
         const nowState = _.cloneDeep(history.state);
 
@@ -53,15 +68,15 @@ const App = HOF(({ Component, pageProps }) => {
             router.beforePopState(null);
         };
 
-    }, [router, layerList, core, closeLastLayer]);
+    }, [router, layerList.length]);
 
     return (
         <div>
-            
             <div aria-hidden={layerList.length === 0 ? 'false' : 'true'}>
-                <Component {...pageProps} />
+                <LayerContext.Provider value={[pageLayerContextData, setPageLayerContextData]}>
+                    <Component {...pageProps} />
+                </LayerContext.Provider>
             </div>
-            
             
             <br /><hr /><br />
             

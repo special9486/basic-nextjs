@@ -3,6 +3,7 @@ import StoreCore from "@/store/StoreCore";
 import useCore from "@/hooks/useCore";
 import React, { useEffect, useState } from "react";
 import styles from "@/public/resources/css/samples/bottomSlideModal.module.css";
+import CustomButton from "./CustomButton";
 
 const { HOF } = ComponentInitializer.init('ModalConfirm');
 
@@ -39,7 +40,7 @@ export default HOF(({ layerIndex, callbackFunc, message, children }) => {
                     return React.cloneElement(child, {closePopup})
                 })}
                 <br/><br/><hr/><br/>
-                <button onClick={() => closePopup()} >닫기</button>
+                <CustomButton onClick={() => closePopup()} >닫기</CustomButton>
             </div>
         </div>
     )

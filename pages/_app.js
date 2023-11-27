@@ -4,6 +4,7 @@ import useCore from "@/hooks/useCore";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import _ from 'lodash';
+import PropertyUtils from "@/utils/PropertyUtils";
 
 import ModalWrapper from "@/components/com/ModalWrapper";
 
@@ -20,8 +21,9 @@ export const initLayerContextData = {
 export const LayerContext = React.createContext([{...initLayerContextData}, () => {}]);
 
 const App = HOF(({ Component, pageProps }) => {
+    // 초기 데이터 셋팅
     if (pageProps.initData) {
-        // TODO initData 에 값이 들어 있을 경우 초기 데이터를 셋팅한다.
+        PropertyUtils.setProperty(pageProps.initData.property);
     }
 
     // 페이지 레이어 컨텍스트 데이터 상태 데이터 정의
@@ -97,8 +99,10 @@ App.getInitialProps = async ({ctx}) => {
 
     // 아래 조건은 초기 페이지 로드시나 getServerSideProps를 사용한 페이지에서만 실행된다.
     if (typeof window === 'undefined') {
+        const res = await fetch('http://127.0.0.1:3000/api/front/initData');
+        const jsonRes = await res.json();
         initData = {
-            userAgent: ctx.req.headers['user-agent']
+            property: jsonRes.property
         }
     }
 

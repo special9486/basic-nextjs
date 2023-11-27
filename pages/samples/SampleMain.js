@@ -37,6 +37,9 @@ export default HOF(() => {
 
             <br/><br/>
             <CustomLink href={'/samples/com/slide/SampleSlide'}>슬라이드 셈플<br/>(/samples/com/slide/SampleSlide)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/prop/SampleUseProperty'}>프로퍼티 사용 셈플<br/>(/samples/com/prop/SampleUseProperty)</CustomLink>
         </Layout>
     )
 });

@@ -40,6 +40,9 @@ export default HOF(() => {
 
             <br/><br/>
             <CustomLink href={'/samples/com/prop/SampleUseProperty'}>프로퍼티 및 서버 환경 체크 사용 셈플<br/>(/samples/com/prop/SampleUseProperty)</CustomLink>
+
+            <br/><br/>
+            <CustomLink href={'/samples/com/scroll/SampleScrollMove'}>스크롤 이동 셈플<br/>(/samples/com/scroll/SampleScrollMove)</CustomLink>
         </Layout>
     )
 });

@@ -4,7 +4,7 @@ import CustomLink from "@/components/com/CustomLink";
 import PropertyUtils from "@/utils/PropertyUtils";
 import useCore from "@/hooks/useCore";
 
-const { HOF } = ComponentInitializer.init('SampleLog');
+const { HOF } = ComponentInitializer.init('SampleUseProperty');
 
 export default HOF(() => {
     const core = useCore();

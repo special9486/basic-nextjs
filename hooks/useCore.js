@@ -7,6 +7,8 @@ import ModalAlert from '@/components/com/ModalAlert';
 import ModalConfirm from '@/components/com/ModalConfirm';
 import ModalBottom from '@/components/com/ModalBottom';
 
+import PropertyUtils from '@/utils/PropertyUtils';
+
 
 const { Log, HOF } = ComponentInitializer.init('useCore');
 
@@ -117,6 +119,26 @@ export default HOF(options => {
         });
     });
 
+    /** 실행중인 환경이 로컬 PC 환경인지 여부 체크 */
+    const isLocal = () => {
+        return PropertyUtils.getProp('env') === 'lcoal';
+    }
+
+    /** 실행중인 환경이 개발 서버 환경인지 여부 체크 */
+    const isDev = () => {
+        return PropertyUtils.getProp('env') === 'dev';
+    }
+
+    /** 실행중인 환경이 스테이징 서버 환경인지 여부 체크 */
+    const isStg = () => {
+        return PropertyUtils.getProp('env') === 'stg';
+    }
+
+    /** 실행중인 환경이 운영 서버 환경인지 여부 체크 */
+    const isProd = () => {
+        return PropertyUtils.getProp('env') === 'prod';
+    }
+
     /** 스토어 목록에 대한 subscribe 설정 **/
     useEffect(() => {
         if (options?.storeList && options.storeList.length) {
@@ -149,6 +171,10 @@ export default HOF(options => {
         getGoBackFunction,
         alert,
         confirm,
-        showBottomPopup
+        showBottomPopup,
+        isLocal,
+        isDev,
+        isStg,
+        isProd
     }
 })

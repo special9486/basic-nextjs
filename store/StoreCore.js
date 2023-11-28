@@ -5,24 +5,22 @@ export default create((set) => ({
     testData: 0,
     
     addLayerList: (layerComponent, callbackFunc, layerProps) => set(state => {
-        state.layerList.push({
-            layerComponent, callbackFunc, layerProps
-        });
-        return {...state};
+        state.layerList.push({layerComponent, callbackFunc, layerProps});
+        return {...state, layerList: [...state.layerList]};
     }),
 
     removeLayer: removeIndex => set(state => {
         state.layerList.splice(removeIndex, 1);
-        return {...state};
+        return {...state, layerList: [...state.layerList]};
     }),
 
     closeLastLayer: () => set(state => {
         state.layerList.pop();
-        return {...state};
+        return {...state, layerList: [...state.layerList]};
     }),
     
     clearLayer: () => set(state => {
         state.layerList = [];
-        return {...state};
+        return {...state, layerList: [...state.layerList]};
     })
 }));

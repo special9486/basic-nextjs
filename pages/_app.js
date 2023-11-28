@@ -70,7 +70,7 @@ const App = HOF(({ Component, pageProps }) => {
             router.beforePopState(null);
         };
 
-    }, [router, layerList.length]);
+    }, [router, layerList]);
 
     return (
         <div>

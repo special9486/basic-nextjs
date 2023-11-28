@@ -121,7 +121,7 @@ export default HOF(options => {
 
     /** 실행중인 환경이 로컬 PC 환경인지 여부 체크 */
     const isLocal = () => {
-        return PropertyUtils.getProp('env') === 'lcoal';
+        return PropertyUtils.getProp('env') === 'local';
     }
 
     /** 실행중인 환경이 개발 서버 환경인지 여부 체크 */

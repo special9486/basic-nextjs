@@ -5,12 +5,10 @@ export default create((set) => ({
     age: '20',
 
     setName:  name => set(state => {
-        state.name = name;
-        return {...state};
+        return {...state, name};
     }),
 
     setAge: age => set(state => {
-        state.age = age;
-        return {...state};
+        return {...state, age};
     })
 }));

@@ -33,6 +33,48 @@ export const useTextValueBind = HOF(initialValue => {
 }, 'useTextValueBind');
 
 /**
+ * Tree형 Object의 데이터(state)의 특정 필드를 맵핑하여 바인딩 처리를 해준다.
+ * 
+ * @param {String} state [필수] Tree형 Object 데이터
+ * @param {String} setState [필수] 데이터를 갱신할 수 있는 함수
+ * @param {String} field [필수] 데이터에 정의된 바인딩할 field명. 점(.)을 이용해 하위 필드까지 접근 가능
+ */
+export const useTextStateBind = HOF((state, setState, field) => {
+    if (!field || !state || !setState) {
+        throw new Error('Required useTextStateBind params....');
+    }
+
+    const initialValue = getNestedValue(state, field);
+
+    const onChange = (e) => {
+        setNestedValue(state, field, e.target.value);
+        setState({ ...state });
+    };
+
+    const reset = () => {
+        setNestedValue(state, field, initialValue);
+        setState({ ...state });
+    };
+
+    const setValue = val => {
+        setNestedValue(state, field, val);
+        setState({ ...state });
+    }
+
+    return {
+        attr: {
+            value: getNestedValue(state, field),
+            onChange
+        },
+        event: {
+            setValue,
+            reset
+        }
+    };
+
+}, 'useTextStateBind');
+
+/**
  * Input Text 타입의 context 값으로 양방향 바이딩 처리하는 훅
  * 
  * @param {Object} context [필수] Context Object

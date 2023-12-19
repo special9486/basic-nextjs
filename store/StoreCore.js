@@ -1,8 +1,8 @@
 import { create } from 'zustand';
+import _ from 'lodash';
 
 export default create((set) => ({
     layerList: [],
-    testData: 0,
     
     addLayerList: (layerComponent, callbackFunc, layerProps) => set(state => {
         state.layerList.push({layerComponent, callbackFunc, layerProps});
